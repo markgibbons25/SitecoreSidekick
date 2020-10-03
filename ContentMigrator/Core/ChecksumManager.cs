@@ -25,9 +25,9 @@ namespace ScsContentMigrator.Core
 			_checksumRefreshQueued = true;
 		}
 
-		public int GetChecksum(string id)
+		public string GetChecksum(string id)
 		{
-			return _checksum?.GetChecksum(id) ?? -1;
+			return _checksum?.GetChecksum(id) ?? null;
 		}
 		public void StartChecksumTimer()
 		{

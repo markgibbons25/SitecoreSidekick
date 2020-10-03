@@ -1,17 +1,14 @@
-﻿using Microsoft.CSharp.RuntimeBinder;
-using Sitecore.Configuration;
-using Sitecore.Data.Items;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using Microsoft.CSharp.RuntimeBinder;
 using Sitecore.SecurityModel;
 using SitecoreSidekick.Core;
 using SitecoreSidekick.Models;
 using SitecoreSidekick.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace SitecoreSidekick.Handlers
 {

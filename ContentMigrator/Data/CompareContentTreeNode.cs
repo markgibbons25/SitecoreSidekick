@@ -40,7 +40,7 @@ namespace ScsContentMigrator.Data
 		public Dictionary<string, List<Tuple<string, string>>> Compare;
 		public bool ChildChanged;
 		public bool MissingRemote;
-		public int Checksum;
+		public string Checksum;
 		public string Revision;
 
 		public CompareContentTreeNode()
@@ -203,7 +203,7 @@ namespace ScsContentMigrator.Data
 						return;
 					}
 					var localChecksum = _checksumManager.GetChecksum(localItem.Id.ToString());
-					ChildChanged = localChecksum != -1 && Checksum != localChecksum;
+					ChildChanged = localChecksum != null && Checksum != localChecksum;
 					CompareContentTreeNode local = new CompareContentTreeNode(localItem);
 					if (Revision != local.Revision)
 					{

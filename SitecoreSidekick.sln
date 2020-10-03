@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreSidekick", "Source\SitecoreSidekick\SitecoreSidekick.csproj", "{0DA36C4A-1B13-4891-A263-5F994127051C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SitecoreSidekick", "Source\SitecoreSidekick\SitecoreSidekick.csproj", "{0DA36C4A-1B13-4891-A263-5F994127051C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScsContentMigrator", "ContentMigrator\ScsContentMigrator.csproj", "{F016480C-DC54-4134-9903-3D30635EF687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScsContentMigrator", "ContentMigrator\ScsContentMigrator.csproj", "{F016480C-DC54-4134-9903-3D30635EF687}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScsEditingContext", "ScsEditingContext\ScsEditingContext.csproj", "{72731B68-5934-4316-A969-BE92CCE6CFC4}"
 EndProject
@@ -29,7 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScsXConnectDemo", "ScsXconn
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Source\SitecoreSidekick.Shared\SitecoreSidekick.Shared.projitems*{0da36c4a-1b13-4891-a263-5f994127051c}*SharedItemsImports = 4
 		Source\SitecoreSidekick.Shared\SitecoreSidekick.Shared.projitems*{3bf608d1-cf04-4a9c-a098-b5455492f6fd}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

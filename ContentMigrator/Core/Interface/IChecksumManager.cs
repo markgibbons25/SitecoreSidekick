@@ -10,6 +10,6 @@ namespace ScsContentMigrator.Core.Interface
 	{
 		void RegenerateChecksum(object sender = null, EventArgs args = null);
 		void StartChecksumTimer();
-		int GetChecksum(string id);
+		string GetChecksum(string id);
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using Sitecore;
 using Sitecore.Collections;
@@ -16,7 +17,7 @@ namespace ScsContentMigrator.Data
 		internal readonly Dictionary<string, List<string>> _childTracker = new Dictionary<string, List<string>>();
 		internal readonly Dictionary<string,string> _parentTracker = new Dictionary<string, string>();
 		internal readonly HashSet<string> _leafTracker = new HashSet<string>();
-		internal readonly Dictionary<string, int> _checksum = new Dictionary<string, int>();
+		internal readonly Dictionary<string, string> _checksum = new Dictionary<string, string>();
 		//t.ID, t.Name, t.TemplateID, t.MasterID, t.ParentID, v.Value
 		public void LoadRow(string id, string parentId, string value)
 		{
@@ -37,13 +38,17 @@ namespace ScsContentMigrator.Data
 			_leafTracker.Remove(parentId);
 		}
 
-		public int GetChecksum(string id)
+		public string GetChecksum(string id)
 		{
-			if (!Guid.TryParse(id, out Guid result)) return -1;
+			if (!Guid.TryParse(id, out Guid result)) return null;
 			string key = result.ToString();
 			if (_checksum.ContainsKey(key))
+			{
+				//if (id == "{4A08D645-E12D-4AEB-9BB7-F4EE919D8D93}")
+					Sitecore.Diagnostics.Log.Info($"Checksum {key} {_checksum[key]}", this);
 				return _checksum[key];
-			return -1;
+			}
+			return null;
 		}
 
 		public void Generate()
@@ -77,24 +82,20 @@ namespace ScsContentMigrator.Data
 			_parentTracker.Clear();
 			_leafTracker.Clear();
 		}
-		public int GetHashCode32(string s)
+		public string GetHashCode32(string s)
 		{
-			var chars = s.ToCharArray();
-			var lastCharInd = chars.Length - 1;
-			var num1 = 0x15051505;
-			var num2 = num1;
-			var ind = 0;
-			while (ind <= lastCharInd)
+			using (SHA1Managed sha1 = new SHA1Managed())
 			{
-				var ch = chars[ind];
-				var nextCh = ++ind > lastCharInd ? '\0' : chars[ind];
-				num1 = (((num1 << 5) + num1) + (num1 >> 0x1b)) ^ (nextCh << 16 | ch);
-				if (++ind > lastCharInd) break;
-				ch = chars[ind];
-				nextCh = ++ind > lastCharInd ? '\0' : chars[ind++];
-				num2 = (((num2 << 5) + num2) + (num2 >> 0x1b)) ^ (nextCh << 16 | ch);
+				var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(s));
+				var sb = new StringBuilder(hash.Length * 2);
+
+				foreach (byte b in hash)
+				{
+					sb.Append(b.ToString("X2"));
+				}
+
+				return sb.ToString();
 			}
-			return num1 + num2 * 0x5d588b65;
 		}
 	}
 }
